@@ -23,11 +23,22 @@ under the License.
   xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
   name="${artifactId}">
 
+  <!--
+  Maven archetype plugin doesn't let .resources in archetype-resources through
+  https://stackoverflow.com/questions/7981060/maven-archetype-plugin-doesnt-let-resources-in-archetype-resources-through/49052349#49052349
+  -->
+
+  <requiredProperties>
+    <requiredProperty key="gitignore">
+      <defaultValue>.gitignore</defaultValue>
+    </requiredProperty>
+  </requiredProperties>
+
   <fileSets>
     <fileSet filtered="false" packaged="false">
       <directory></directory>
       <includes>
-        <include>.gitignore</include>
+        <include>__gitignore__</include>
       </includes>
     </fileSet>
     <fileSet filtered="true" packaged="true">
@@ -37,4 +48,5 @@ under the License.
       <directory>src/test/java</directory>
     </fileSet>
   </fileSets>
+
 </archetype-descriptor>
